@@ -1,5 +1,5 @@
 import scrapy
-from scrapy.http import request
+from scrapy.http import Request
 
 class Myspider(scrapy.Spider):
 
