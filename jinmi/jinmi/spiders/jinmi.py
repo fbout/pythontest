@@ -1,7 +1,9 @@
+
 import scrapy
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 from scrapy.http import Request
-#from jinmi.items import JinmiItems
+from jinmi.items import JinmiItem
+
 
 class Myspider(scrapy.Spider):
     name = "jinmi"
@@ -29,8 +31,10 @@ class Myspider(scrapy.Spider):
 
     #内容提取
     def get_title(self,response):
-       title=response.xpath('//*[@id="main-content"]/div[2]/h2').extract()
-       print(title)
+       item=JinmiItem()
+       item['title']=response.xpath('//*[@id="main-content"]/div[2]/h2').extract()
+       item['date']=response.xpath('//*[@id="main-content"]/div[2]/div/p[1]/text()[2]').extract()
+       item['content']=response.xpath('//*[@id="main-content"]/div[2]/div').extract()
 
 
 
